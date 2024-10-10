@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .errorlist>li
+        {
+            color: red;
+            list-style: none;
+        }
+        form.login_form
+        {
+
+            margin: auto;
+
+            margin-top: 10%;
+
+
+            height: fit-content; width: 250px;
+            box-shadow: 15px 15px 15px lightblue;
+            border-radius: 2%;
+            border: 1px solid lightblue;
+            z-index: 10;
+        }
+
+        form.login_form>section>input
+        {
+            margin-left: 10%;
+            height: 25px;width: 80%;
+          border: 2px solid black;
+            box-shadow: 4px 4px 4px lightskyblue;
+            text-shadow: 5px 5px 5px silver;
+            border: none;
+
+            margin-top: 5px;
+            border-radius: 5%;
+        }
+        form.login_form>section>input:hover
+        {
+            border: 2px solid slategrey;
+            box-shadow:4px 4px 4px darkgrey;
+
+        }
+        form.login_form>section{margin-top: 4%;margin-left: 2%}
+        form>section>button
+        {
+            margin-left: 37%;
+            height: 25px;width: 30%;
+            border: none;
+            box-shadow: 1px 1px 1px;
+            background-color: deepskyblue;
+            color: white;
+            cursor: pointer;
+        }
+        .background_transparent
+        {
+            display: inline-block;position: absolute;top: 0;right: 0;z-index: -5;
+            min-width: 100%;min-height:100%;background-color: lightblue;opacity: 50%;
+        }
+    </style>
+</head>
+<div style="background-image:url('/static/imgs/back_ground.jpg');filter: blur(3px);position:fixed;top:0;right: 0;
+height: 100vh;width: 100vw;z-index: -5"></div>
+<body >
+
+<form class="login_form" method="post" action="{% url 'login' %}" style="position: relative">
+    <div class="background_transparent">
+    </div>
+    {% csrf_token %}
+     <input style="display: none" value="{{ quened_url }}" type="text" name="q_url">
+    Enter either your username or email
+     <br>
+    {% for field in form %}
+    <section >
+        <b>{{ field.label }}:</b>
+        <br>
+        {{ field }}
+    </section>
+
+        {{ field.errors }}
+    {% endfor %}
+    <section style="font-size: 15px">
+        Don't have an account?<a href="{% url 'create_user'  %}">Sign Up</a> here
+    </section>
+    <section style="font-size: 15px">
+        Forgot your password?<a href="{% url 'ask_for_pass_reset'  %}">click</a> here
+    </section>
+    <section>
+        remember me:<input type="checkbox" style="height:15px;width: 15px;box-shadow: none;margin-left: 1%">
+    </section>
+
+    <section>
+        <button>
+            Login
+        </button>
+    </section>
+
+
+</form>
+</body>
+</html>

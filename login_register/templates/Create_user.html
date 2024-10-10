@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        form.login_form
+        {
+
+            margin: auto;
+            margin-top: 10%;
+            background-color: transparent;
+            height:fit-content; width: 250px;
+            box-shadow: 15px 15px 15px lightblue;
+            border-radius: 2%;
+            border: 1px solid lightblue;
+            z-index: 10;
+
+        }
+
+        form.login_form>section>input
+        {
+            margin-left: 10%;
+            height: 25px;width: 80%;
+          border: none;
+            box-shadow: 4px 4px 4px lightskyblue;
+            text-shadow: 5px 5px 5px silver;
+            margin-top: 5px;
+            border-radius: 5%;
+        }
+        form.login_form>section>input:hover
+        {
+            border: 2px solid slategrey;
+            box-shadow:4px 4px 4px darkgrey;
+
+        }
+        form.login_form>section{margin-top: 4%;margin-left: 2%}
+        form>section>button
+        {
+            margin-left: 37%;
+            height: 25px;width: 30%;
+            border: none;
+            box-shadow: 1px 1px 1px;
+            background-color: deepskyblue;
+            color: white;
+            cursor: pointer;
+        }
+        li{list-style: none}
+    </style>
+
+</head>
+<div style="background-image:url('/static/imgs/back_ground.jpg');filter: blur(3px);position:fixed;top:0;right: 0;
+height: 100vh;width: 100vw;z-index: -5"></div>
+<body style=" ">
+
+<form class="login_form" method="post" action="{% url 'create_user' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% for field in form %}
+    <section >
+        <b>{{ field.label }}:</b>
+        <br>
+        {{ field }}
+    <br>
+    <b style="color: red;font-size: 18px">{{ field.errors }} </b>
+    </section>
+
+    {% endfor %}
+    <section >
+        <b>Your profile picture:</b>
+        <br>
+        <br>
+        <img style="height: 150px;width: 150px;object-fit: cover;border-radius: 50%;margin-left: 21.5%" src="/static/imgs/default.jpg" id="profile_pic">
+    <br>
+
+    </section>
+    <section>
+        <button>
+            Sign up
+        </button>
+    </section>
+<script>
+    document.getElementById('id_avatar').onchange=function ()
+    {
+        var image=document.getElementById('profile_pic');
+        var url=URL.createObjectURL(this.files[0]);
+        image.src=url;
+    }
+    console.log('{{ form.errors }}')
+</script>
+
+</form>
+
+</body>
+</html>

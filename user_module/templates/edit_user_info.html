@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .form_container
+        {
+            height: 50%;
+            width: 15%;background-color: lightgrey;border: none; border-radius: 1.6%;box-shadow: 6px 6px 6px dimgrey;
+            color: black;
+            position: fixed;right:42%;top:25%;overflow-y: scroll;overflow-x: hidden;
+            align-items: center;text-align: center;
+        }
+        input
+        {
+
+            border: none; border-radius: 2%;
+            background-color: lightgrey;width: 100%;height: 50%;
+           float: bottom;
+
+        }
+        input:focus~hr
+        {
+            background-color: black;
+            height: 2px;
+        }
+         input:focus
+        {
+            outline: none;
+        }
+
+        .form_container>div
+        {
+
+            margin-top: 2%;
+            margin-bottom: 2%;
+            float: top;
+        }
+        img#avatar_img:hover
+        {
+
+            cursor: pointer;
+            height: 900px; width: 900px;
+        }
+    </style>
+
+</head>
+<body style="background-color: grey" >
+
+<div class="form_container">
+<div id="{{ field.name }}">
+    Avatar:
+    <br>
+    <label for="id_avatar">
+    <img style="border-radius: 50%;height: 70px;width: 80px" src="{{ user.avatar.url }}" alt="Avatar" id="avatar_img">
+     </label>
+    <input type="file" style="display: none" id="id_avatar">
+    <br>
+<hr style="background-color: grey">
+</div>
+{% for  field in form %}
+    <div id="{{ field.name }}">
+{{ field.label }}:
+    <br>
+    {{ field }}
+    <hr style="background-color: grey">
+    </div>
+
+{% endfor %}
+<br>
+<button>
+    Submit
+</button>
+</div>
+</body>
+</html>

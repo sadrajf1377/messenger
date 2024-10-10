@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div.logo_header
+        {
+            position: fixed;
+            top:0;
+            left: 0;
+            width: 100%;
+            height:5%;
+            background-color: dodgerblue;
+            animation-name: border;
+            animation-duration: 4s;
+            animation-iteration-count: infinite;
+        }
+  div.chat_rooms
+  {
+      height: 100vh;
+      width: 9.9vw;
+      border: 1px solid lightskyblue;
+      position: fixed;
+      z-index: 1;
+      top: 5%;
+      left: 0;
+
+      overflow-x: hidden;
+      padding-top: 2.15vh;
+  }
+  input.search_box
+  {
+      z-index: 2;
+      position: absolute;
+      left:0.1%;
+      top: 0%;
+      border: 1px solid lightgrey;
+      height:3%;
+      width: 100%;
+      background-color: white;
+      color:black;
+      max-height: 100%;
+  }
+  div.chat_rooms>div
+  {
+
+      margin-top: 7%;
+      background-color: grey;
+      list-style: none;
+
+      height: fit-content;
+      width:100%;
+      height: 100%;
+
+
+  }
+        div.chat_rooms>div>div
+        {
+              border-bottom: 1px solid black;
+              height:fit-content;
+            color: dodgerblue;
+             background-color: white;
+
+             width: 100%;
+            font-size:calc(1vh + 1vw);
+
+        }
+        div.chat_rooms>div>div:hover
+        {
+background-color: grey;
+            border: 2px solid grey;
+ cursor:pointer;
+        }
+        div.type_message
+        {
+            position: fixed;
+            bottom:0;
+            right: 0;
+            width: 90%;
+            height:5%;
+            background-color:black;
+
+        }
+     button:hover
+     {
+         cursor: pointer;
+     }
+@keyframes border {
+    0% {border: 2px solid lightblue}
+    50%{border: 2px solid pink}
+    100% {border: 2px solid lightblue}
+}
+div.users_list_popup
+{
+
+animation-name:pop_up ;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+
+}
+div.users_list_popoff
+{
+
+animation-name:pop_off ;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+
+}
+@keyframes pop_up {
+    from{height: 5%;width: 5%;position: absolute;top:93%;right: 93%;z-index: 5;background-color: whitesmoke;border-radius: 3%;
+    box-shadow: 2px 2px 25px lightblue;background-color: lightblue;}
+    to{ height: 70%;width: 30%;position: absolute;top:12%;right: 35%;z-index: 10;background-color: whitesmoke;border-radius: 3%;
+    box-shadow: 2px 2px 25px lightblue;background-color: lightblue;display: block;opacity: 100}
+
+}
+@keyframes pop_off {
+     from{ height: 70%;width: 30%;position: absolute;top:12%;right: 35%;z-index: 10;background-color: whitesmoke;border-radius: 3%;
+    box-shadow: 2px 2px 25px lightblue;background-color: lightblue}
+    to{height: 5%;width: 5%;position: absolute;top:93%;right: 93%;z-index: 5;background-color: whitesmoke;border-radius: 3%;
+    box-shadow: 2px 2px 25px lightblue;background-color: lightblue;display: none;opacity: 0}
+}
+div.users_list_popup>input
+{
+    width: 98%;height: 2%;position: absolute;top: 0;border:2px solid lightblue;background-color: whitesmoke;
+}
+div.users_list_popup>div.users_box
+{
+    width: 98%;height: 92%;position: absolute;bottom: 0.25%;border: 1px solid lightblue;left: 0.5%;box-shadow: 2px 2px 10px lightblue;
+    background-color: whitesmoke;overflow-y: scroll;
+}
+div.users_list_popup>div.users_box>div.username
+{
+
+    margin-top: 0.05%;
+    width: 99.5%;height: 5%;border: 0.05px solid lightgrey;
+    font-size: 1.5vw;
+}
+div.users_container
+{
+    position: absolute;top: 4%;width: 98%;height: 96%;overflow-y: scroll;
+}
+div.users_container>div
+{
+    height: 5%;width:98%;margin-top: 2%;margin-left: 1%;background-color: wheat;box-shadow: 1px 1px 1px wheat;
+    border: 0.5px solid wheat;
+}
+div.users_container>div:hover
+{
+    background-color: silver;
+}
+a:hover
+{
+    cursor: pointer;
+}
+
+.general_hover_on
+{
+
+    cursor: pointer;
+    background-color: grey;
+}
+.general_hover_off
+{
+background-color: whitesmoke;
+}
+div.selected_usernames
+{
+    position: absolute;
+    top:3%;
+
+    height: 4%;
+    width: 98%;
+
+}
+div.selected_usernames div:nth-child(9n+1)
+{
+    clear: left;
+}
+div.selected_usernames>div
+{
+background-color: deepskyblue;
+    color: whitesmoke;
+    margin-left: 1%;
+    margin-top: 1%;
+    float: left;
+}
+.leave_group
+{
+    float: top;height: fit-content;background-color:red;
+border: none;border-radius: 2%;color: wheat;font-size: calc(0.55vh + 0.55vw);width: 100%;
+}
+button.join_group
+{
+     float: left;height: fit-content;width: fit-content;background-color:greenyellow;
+border: none;border-radius: 2%;color: wheat;font-size: calc(0.55vh + 0.55vw);
+}
+div.chat_messages
+{
+    height: 100%;width: 100%;
+;display: flex;
+     opacity: 0;position: absolute;top: 0;right: 0;
+    flex-direction:column;
+}
+div.chat_messages>div.old_messages
+{
+    height: fit-content;width: 100%;display: flex;
+      flex-direction:column-reverse;
+}
+div.chat_messages>div.new_messages
+{
+    height: fit-content;width: 100%;display: flex;
+      flex-direction:column;
+}
+#warning_form
+{
+position: fixed;width:30vw;height: 20vh;right:35vw;top:40vh;background-color: whitesmoke;border-radius: 1.5%;box-shadow: 0.25vw 0.25vw 0.5vh lightgray;
+    transition: 0.25s all ease;overflow: hidden;z-index: 2;scale: 0;
+}
+#warning_form>p#warning
+{
+    width: 100%;height:22%;margin-top: 0%;background-color: lightseagreen;color: whitesmoke;
+    font-size: 2rem;text-align: center;
+}
+#warning_form>p#message
+{
+font-size: 2rem; text-align: left;width: 100%;height: 30%;
+}
+#warning_form>button
+{
+    position: absolute;bottom: 0;height: 15%;width: 30%;border: none;border-radius: 2%; color: whitesmoke;font-size:calc(1vh + 1vw);
+}
+
+#alert_message
+{
+    position:fixed ;width: 40vw;height: 30vh;top:35vh;right: 30vw;display: none;
+}
+#alert_message>#header_text
+{
+    width: 100%;height: 20%;text-align: center;font-size: calc(1.5vh + 1.5vw);color: whitesmoke;background-color: lightseagreen;
+
+}
+#alert_message>#message
+{
+    width: 100%;height: 80%;text-align: left;font-size: calc(1.5vh + 1.5vw);color: black;background-color: whitesmoke;
+}
+#alert_message>button
+{
+    position: absolute;text-align: center;width: 40%;height: 20%;bottom: 0%;right: 30%;border: none; border-radius: 1.5%;background-color: lightgreen;
+    color: whitesmoke;
+}
+div#side_bar
+{
+    position: fixed;width: 0vw;height: 100vh;background-color: lightseagreen;box-shadow: inset 0 0 5px lightseagreen ;
+    border-radius: 1%;right: 0;top:0;transition: all 0.25s ease;z-index: 99 !important;
+}
+div#side_bar>div.options
+{
+    width: 100%;float: top;height: fit-content;text-align:center;font-size:calc(1.25vh + 1.25vw);color: whitesmoke;
+    border: 1px solid lightblue;transition: all 0.5s ease;
+
+}
+div#side_bar>div#username_container
+{
+    width: 100%;float: top;height: 8%;text-align: center;font-size:calc(1.45vh + 1.45vw);color: whitesmoke;
+}
+.options_hover:hover
+{
+    box-shadow: inset 0 0 45px lightblue;
+     cursor: pointer;
+}
+    </style>
+
+</head>
+
+<div style="background-image:url('/static/imgs/back_ground.jpg');filter: blur(3px);position:fixed;top:0;right: 0;
+height: 100vh;width: 100vw;z-index: -5"></div>
+<body style="display: flex;flex-direction: row-reverse;">
+<script>
+     const chat_sockets={};
+    let selected_socket='';
+    let selected_socket_index='';
+    const message_header={};
+    const temp_groups=[];
+
+</script>
+<script rel="script" src="/static/js/sockets.js">
+
+</script>
+
+
+
+
+
+
+
+
+
+<div >
+<div   style="display: none">
+<input  placeholder="search usernames" >
+    <div style="" class="users_container">
+       <div>
+           sdssd
+       </div>
+        <div>
+          jkkjk,j
+       </div>
+    </div>
+</div>
+<div class="logo_header">
+    <div style="height: 45px;width: fit-content;margin-left: 50%">
+
+<p style="margin: auto">Welcome mr/mrs {{ user.username }}  </p>
+
+
+
+
+    </div>
+</div>
+<div style="position: absolute;right:1.25%;top:1%;z-index: 1;height: 7%;width: 2%">
+            <img src="/static/imgs/options.png" style="z-index: 200;width: 80%;height: 30%;position:absolute;right: 2%;top:-2%"
+            onclick="open_close_sidebar('close')"
+            >
+
+        </div>
+<div class="chat_rooms">
+    <input class="search_box" placeholder="search users or groups" oninput="retrieve_groups(this.value);">
+    <div id="groups_list">
+        {% for group in groups %}
+
+        <div onclick="change_selected_message_group('{{ group.id }}')" id="group{{ group.id }}">
+              {% if group.group_type == 'many' %}
+          <div style="float: top">  {{ group.title }} {{ group.unread_count }} </div>
+
+                   <button class="leave_group" onclick="event.stopPropagation();console.log('clicked');
+                    open_close_warning(true,'do you want to leave {{ group.title }} ?');war_form_action_button.addEventListener('click',
+                           function() {
+                           leave_group('{{ group.id }}','many')
+                           })">
+            Leave
+        </button>
+
+            {% else %}
+            {{ group.my_title }}
+                   <button class="leave_group" onclick="event.stopPropagation(); console.log('clicked');
+                   open_close_warning(true,'do you want to leave {{ group.my_title }} ?')
+                           ;war_form_action_button.addEventListener('click',
+                           function() {
+                           leave_group('{{ group.id }}','two')
+                           })
+
+                           ">
+            Delete
+        </button>
+            {% endif %}
+
+        </div>
+
+
+        {% endfor %}
+
+
+    </div>
+
+
+</div>
+
+<div class="type_message">
+    <form action=""  id="message_form" enctype="multipart/form-data" style="height:100%">
+        {% csrf_token %}
+    <input type="text" style="width: 100%;height: 100%" placeholder="type your message here" id="message_to_send" name="message">
+
+    <input type="file" hidden id="file_to_send" name="message_file">
+    <label for="file_to_send" style="width: 30px;height: 30px;position: absolute;top: 22%;right: 6%;z-index: 10">
+        <img src="/static/imgs/attatch.png" style="height: 100%;width:100%;" id="magnet_pic" >
+    </label>
+
+        </form>
+    <button style="height: 100%;width: 6%;background-color: deepskyblue;border: none;z-index: 5;color: whitesmoke;position: absolute;bottom:1%;right: 0%;font-size: 1vw" class="send_button" onclick="send_message()">
+      send
+    </button>
+</div>
+<div style="height: 90%;overflow-y: scroll;border: 1px solid deepskyblue;box-shadow: 2px 2px 2px deepskyblue;
+width: 5%;position: absolute;right: 0;top: 5%;background-color: dodgerblue;color: whitesmoke" id="users_lists_container">
+
+{# add list of usernames #}
+    {% for group in groups %}
+   <div class="users_list" style="height: 100%;width: 100%;position: absolute;top:0;right:0;display: flex;flex-direction: column;flex-shrink: 0;opacity: 0"
+        id="list{{ group.id }}">
+    User's list:
+       <div style="height: 1px;width: 100%;background-color: black"></div>
+     {% for user in group.users.all %}
+
+    <div style="width: 100%;height: fit-content;margin-top: 1%;font-size: 100%">
+    {{ user.username }}
+</div>
+         {% endfor %}
+
+       </div>
+    {% endfor %}
+
+</div>
+<div style="position: absolute;
+
+            top:5%;
+            right: 5%;
+            height: 90%;
+            width: 85%;
+            overflow-y: scroll;
+            " id="message_groups_tabs">
+
+{% for group in groups %}
+
+<script>
+add_socket('{{ group.title }}','{{ group.id }}');
+message_header['{{ group.id }}']=0;
+
+</script>
+
+<div class="chat_messages"  id="tab{{ group.id }}" >
+<div class="old_messages">
+{% for message in group.children_sorted_by_date %}
+    {% if message.m_type == 'message' %}
+        {% if message.user.id == user.id %}
+        <div style="width: fit-content;height: fit-content; align-self: flex-end;" id="{{ message.id }}" class=""
+       >
+
+        <img style="height: 45px;width: 45px;object-fit: cover;border-radius: 50%;float: right" src="{{ message.user.get_avatar }}">
+
+            <p style="font-size:1vw;background-color:dodgerblue;float: right;margin-right: 10px;box-shadow: 3px 3px 3px dodgerblue;position: relative">
+            <img style="height:18px;width: 18px;position:absolute;top:-17%;right:-7%;z-index: 1 " src="/static/imgs/rejected.png"
+        onclick="send_delete_message('{{ group.id }}','{{ message.id }}','old')">
+
+                {{ message.user.username }}
+                <br>
+        {{ message.message }}
+                <br>
+                {% if message.file %}
+                <a href="{{ message.file.url }}">{{ message.file.name }}</a>
+                    {% endif %}
+            <br>
+                <img class="seen_status" style="width: 18px;height:18px;position: absolute;right: 0;bottom: 0" src=
+                    "
+                    {% if message.seen_list.users.all.count != 0 %}
+                    /static/imgs/check_blue.png
+                    {% else %}
+                    /static/imgs/check_trans.png
+                    {% endif %}
+                      ">
+                </p>
+        <br>
+
+        </div>
+        {% else %}
+        <div style="width: fit-content;height: fit-content; align-self: flex-start;" id="{{ message.id }}" class="{% if user in message.seen_list.users.all %}{% else %}message_div{% endif %}"
+        data-parent="{{ group.id }}">
+
+        <img style="height: 45px;width: 45px;object-fit: cover;border-radius: 50%;float: left" src="{{ message.user.get_avatar }}">
+
+            <p style="font-size:1vw;background-color:dodgerblue;float: left;margin-left: 10px;box-shadow: 3px 3px 3px dodgerblue">
+                {{ message.user.username }}
+                <br>
+        {{ message.message }}
+                <br>
+                {% if message.file %}
+                <a href="{{ message.file.url }}">{{ message.file.name }}</a>
+                    {% endif %}
+                </p>
+        </div>
+
+        {% endif %}
+    {% else %}
+    <div style="width: fit-content;height: fit-content; align-self: center;z-index: 1" >
+            <p style="font-size:1vw;background-color:dodgerblue;float: right;margin-right: 50%;box-shadow: 3px 3px 3px dodgerblue">
+                {{ message.message }}
+                </p>
+        </div>
+    {% endif %}
+        {% endfor %}
+<img src="/static/imgs/plus.png" style="height: 50px;width: 50px;align-self: center" onclick="move_message_header('{{ group.id }}',this)">
+</div>
+<div class="new_messages">
+
+</div>
+    </div>
+{% endfor %}
+</div>
+<div  id="new_group_users" style="display: none">
+    <input type="text" placeholder="usernames" oninput="filter_users(this.value)">
+    <div class="selected_usernames">
+
+    </div>
+    <div class="users_box">
+    </div>
+    <div style="position: relative;top: -8%;background-color: lightblue;color: whitesmoke">
+        Group's Name:
+        <input type="text" style="height: 20%;width: 96%" placeholder="What is your Group's name?" id="new_group_name">
+    </div>
+    <button style="height: 5%;width: 13%;position: absolute;bottom: -8%;background-color: deepskyblue;border: none;color: whitesmoke;left: 40%"
+    onclick="create_new_group(form=this.parentElement)">
+        Create
+    </button>
+</div>
+<form id="warning_form">
+<p id="warning" >Warning</p>
+    <p id="message">sdsd</p>
+    <button style="left: 15%;background-color: greenyellow" id="action" onclick="event.preventDefault()">Accept</button> <button style="left:55%;background-color: red" onclick="open_close_warning(false);
+    event.preventDefault()">Cancel</button>
+</form>
+<div id="alert_message">
+    <div id="header_text">
+        Warning
+    </div>
+    <div id="message">
+
+    </div>
+    <button onclick="open_close_alert(false,null);console.log('fgfg')">
+        Ok!
+        </button>
+</div>
+
+<img src="/static/imgs/plus.png" style="height: 5%;width: 2.5%;position: fixed;bottom: 1%;left:1%;z-index: 2" onclick="new_group_pop_up_or_off()">
+
+</div>
+<div id="side_bar">
+
+<img src="{{ user.get_avatar }}" style="float: top;height: 10%;width:60%;border-radius: 50%;margin-left: 20%;margin-top:5%;object-fit: cover">
+  <div id="username_container">  {{ user.username }} </div>
+
+    <div class="options options_hover" style="margin-top:80%">
+        Edit Profile
+    </div>
+
+     <div class="options" >
+         <div onclick="open_close_delete_form(this.parentElement)" class="options_hover">Delete My account </div>
+         <form style="display: none;font-size: calc(0.75vh + 0.75vw);float: top;height: fit-content">
+          <br>
+
+             Note:To delete your account please enter the code we sent to your email down below
+             <input type="text" name="delete_code">
+             <button onclick="event.preventDefault(),delete_user(this.parentElement)"
+                     style="background-color: red;color: whitesmoke;border-radius: 0.75%;box-shadow: 5px 5px 5px red;border: none">
+                 delete
+             </button>
+             <button onclick="event.preventDefault();ask_for_user_deletion(this)"
+                     style="background-color:mediumseagreen;color: whitesmoke;border-radius: 0.75%;box-shadow: 5px 5px 5px mediumseagreen;border: none">
+                 send code
+             </button>
+                <br>
+         </form>
+
+    </div>
+
+    <div class="options options_hover">
+        Logout
+    </div>
+    <div class="options options_hover" onclick="open_close_sidebar('open')">
+        Close side bar
+    </div>
+    <div class="options options_hover">
+        About Us
+    </div>
+</div>
+<script>
+
+////////////////////
+const csrf_token=document.getElementsByName('csrfmiddlewaretoken')[0].value;
+
+const groups_lists=document.getElementById('groups_list');
+    const tabs_container=document.getElementById('message_groups_tabs');
+    const users_lists=document.getElementById('users_lists_container');
+    let cur_tab;
+     /////////////////////////////////
+
+
+const observer=new IntersectionObserver((entries,observer)=>{
+    for(const el of entries)
+    {
+        if(el.isIntersecting)
+        {
+         mark_as_seen(el.target)
+
+        }
+    }
+})
+     function hover_element(element,on_or_off,element_main_class_name)
+        {
+            switch (on_or_off)
+            {
+                case 'on':
+                {
+                  element.className=`${element_main_class_name} general_hover_on`;
+                }
+                break;
+                case 'off':
+                {
+                   element.className=`${element_main_class_name} general_hover_off`;
+                }break;
+            }
+        }
+
+    start_private_socket();
+</script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js">
+
+</script>
+
+<script rel="script" src="/static/js/chats&messages.js"></script>
+<script rel="script" src="/static/js/sider_bar.js"></script>
+<script rel="script" src="/static/js/alerts&warnings.js"></script>
+</body>
+
+</html>

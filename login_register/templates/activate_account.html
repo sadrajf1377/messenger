@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Check your email</title>
+    <style>
+        div
+        {
+             position: fixed;
+            top:0;
+            bottom: 0;
+    right: 0;
+    left: 0;
+    margin-right: auto;
+    margin-left: auto;
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+    </style>
+</head>
+<body style="background-image: url('/static/imgs/back_ground.jpg')">
+<div style="box-shadow: 5px 5px 5px lightblue;border: none;
+border-bottom: 3px deepskyblue solid;height: fit-content;width: fit-content;background-color: deepskyblue;font-size: 25px">
+Dear <b>{{ user_name }}</b>:
+    <br>
+    {{ activation_code }}
+    To activate you account <a href="http://127.0.0.1:8000{% url 'activate_user' activation_code%}">CLICK</a> here!
+</div>
+</body>
+</html>
