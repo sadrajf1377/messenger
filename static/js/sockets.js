@@ -111,9 +111,9 @@ function start_private_socket()
         }
     }
     }
-     function send_message(dsdd)
+     function send_message()
         {
-
+console.log('send message ws called')
 var message_form=document.getElementById('message_form');
 const form_data=new FormData(message_form);
 form_data.append('group_id',selected_socket_index);
