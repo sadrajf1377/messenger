@@ -11,3 +11,4 @@ def Quened_Request(func):
             abs_url=req.build_absolute_uri()
             return render(req,'Login_page.html',{'quened_url':abs_url,'form':my_form(None)})
     return To_do
+
