@@ -282,6 +282,9 @@ height: 100vh;width: 100vw;z-index: -5"></div>
     let selected_socket_index='';
     const message_header={};
     const temp_groups=[];
+    const my_username='{{ user }}';
+console.log('my username is',my_username)
+const my_avatar='{{ user.get_avatar }}';
 
 </script>
 <script rel="script" src="/static/js/sockets.js">
@@ -571,7 +574,10 @@ const groups_lists=document.getElementById('groups_list');
     const tabs_container=document.getElementById('message_groups_tabs');
     const users_lists=document.getElementById('users_lists_container');
     let cur_tab;
+
      /////////////////////////////////
+
+
 
 
 const observer=new IntersectionObserver((entries,observer)=>{

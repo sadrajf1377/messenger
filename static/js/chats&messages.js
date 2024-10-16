@@ -233,7 +233,7 @@ function change_selected_message_group(id)
 
        const file_url_to_add=file_url!='na'?`<br><a onclick="open_pop_up('${file_url}','blank');" > File </a>`:``;
 
-       const is_mine=username==='{{ user.username }}';
+       const is_mine=username===my_username;
        const div=document.createElement('div'); div.style.cssText=`width: fit-content;height: fit-content;
         ${is_mine?'align-self:flex-end':'align-self:flex-start'}`
        const img=document.createElement('img'); img.style.cssText=`height: 45px;width: 45px;object-fit: cover;border-radius: 50%;
@@ -250,6 +250,13 @@ function change_selected_message_group(id)
             img.className='seen_status';
             img.style.cssText='width: 18px;height:18px;position: absolute;right: 0;bottom: 0';
                 img.src = `/static/imgs/${is_seen?'check_blue.png':'check_trans.png'}`;
+                const delete_message=document.createElement('img');
+                delete_message.style.cssText='height:18px;width: 18px;position:absolute;top:-17%;right:-7%;z-index: 1';
+                delete_message.onclick=function (){
+                send_delete_message(id,message_id,'new')
+                };
+                p.appendChild(delete_message);
+
             p.appendChild(img);
         }
         else
@@ -276,7 +283,7 @@ function filter_users(username)
             box.innerHTML='';
             if(username===''){return;}
             box.innerHTML='';
-            $.get(`http://127.0.0.1:8000/filter_users/${username}`).then(res=>{
+            $.get(`http://127.0.0.1:8000/users/filter_users/${username}`).then(res=>{
              for(const usname of res.users)
              {
                  const my_div=document.createElement('div'); my_div.className="username"; my_div.onmouseleave=function (){hover_element(my_div

@@ -22,7 +22,7 @@ class Register_form(forms.ModelForm):
             print('passwords not safe')
             self.add_error('password', 'password must contain at least one special character'
                                        'ex:_ , one uppercase word ex:H and one number,also it must contain atleast eight character and less than 16 characters')
-        return passwords_match and passwords_match(self.data.get('password'))
+        return (valid_pass and passwords_match)
 
 
 

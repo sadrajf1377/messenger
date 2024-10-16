@@ -24,7 +24,7 @@ function add_socket(group_title,group_id) {
         const function_type = data.function;
         switch (function_type) {
             case 'add_message': {
-                add_message(group_id, data.message, data.username, data.url, data.file_url,'new',false,'{{ user.username }}'!=data.username,
+                add_message(group_id, data.message, data.username, data.url, data.file_url,'new',false,my_username!=data.username,
                 data.message_id);
             }
                 break;
@@ -55,12 +55,7 @@ function add_socket(group_title,group_id) {
 }
 function start_private_socket()
 {
-const pv_socket=new WebSocket(
-        'ws://'
-            + window.location.host
-            + '/ws/private_consumer/'
 
-    );
     pv_socket.onmessage=function (e){
         const data=JSON.parse(e.data);
         console.log(data);
@@ -116,12 +111,13 @@ const pv_socket=new WebSocket(
         }
     }
     }
-     function send_message()
+     function send_message(dsdd)
         {
 
 var message_form=document.getElementById('message_form');
 const form_data=new FormData(message_form);
 form_data.append('group_id',selected_socket_index);
+
  $.ajax({
             type: 'POST',
             url: 'http://127.0.0.1:8000/receive_messages',
@@ -140,7 +136,7 @@ form_data.append('group_id',selected_socket_index);
         }).then(
             result=>{
                  selected_socket.send(JSON.stringify({
-        'my_dict': {'type':'chat_message','message':result.message,'username':'{{ user.username }}','avatar_url':'{{ user.get_avatar }}',
+        'my_dict': {'type':'chat_message','message':result.message,'username':my_username,'avatar_url':my_avatar,
                      'file_url':result.file_url,'destination':'group','message_id':result.message_id}
     }));
             }
@@ -180,7 +176,7 @@ function create_new_group(form=null,user_name=null)
             {
                 usernames_list.push(user_name);
                 group_type='two';
-                group_name=`{{ user.username }},${user_name}`;
+                group_name=`${my_username},${user_name}`;
             }
              pv_socket.send(JSON.stringify({
                     'function_type': 'create_group',

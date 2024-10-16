@@ -51,6 +51,7 @@ class ChatConsumer(WebsocketConsumer):
         my_url=event["avatar_url"]
         print(my_url)
         file_url=event['file_url']
+        print('username for recieved message is',event['username'])
 
         # Send message to WebSocket
         self.send(text_data=json.dumps({"function":"add_message", "message": message,"username":username,"url":my_url,'file_url':file_url,'message_id'
@@ -101,9 +102,12 @@ class ChatConsumer(WebsocketConsumer):
 class user_private_consumer(WebsocketConsumer):
     def connect(self):
         online_users[self.scope['user'].username] = self.channel_name
+        print(self.scope['user'].username,online_users)
         self.accept()
     def disconnect(self, close_code):
+        print('online users are',online_users)
         del online_users[self.scope['user'].username]
+        self.accept()
     def receive(self, text_data):
         text_data_json=json.loads(text_data)
         func_type=text_data_json['function_type']

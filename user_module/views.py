@@ -14,10 +14,9 @@ from utils.send_emails import send_email_to
 from .forms import Reset_Password_Form
 # Create your views here.
 class filter_with_usernames(View):
-    def get(self,request):
-        user_name=request.GET.get('username')
-        users=[x['username'] for x in list(cutsom_user.objects.filter(username__contains=user_name).values('username'))]
-        print(users)
+    def get(self,request,inp):
+        user_name=inp
+        users=list(cutsom_user.objects.filter(username__contains=user_name).values_list('username',flat=True))
         return JsonResponse({'users':users})
 
 class Log_Out(View):
