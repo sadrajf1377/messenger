@@ -252,6 +252,7 @@ function change_selected_message_group(id)
                 img.src = `/static/imgs/${is_seen?'check_blue.png':'check_trans.png'}`;
                 const delete_message=document.createElement('img');
                 delete_message.style.cssText='height:18px;width: 18px;position:absolute;top:-17%;right:-7%;z-index: 1';
+                delete_message.src='/static/imgs/rejected.png';
                 delete_message.onclick=function (){
                 send_delete_message(id,message_id,'new')
                 };

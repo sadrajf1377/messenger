@@ -282,9 +282,6 @@ height: 100vh;width: 100vw;z-index: -5"></div>
     let selected_socket_index='';
     const message_header={};
     const temp_groups=[];
-    const my_username='{{ user }}';
-console.log('my username is',my_username)
-const my_avatar='{{ user.get_avatar }}';
 
 </script>
 <script rel="script" src="/static/js/sockets.js">
@@ -576,10 +573,17 @@ const groups_lists=document.getElementById('groups_list');
     let cur_tab;
 
      /////////////////////////////////
+const my_username='{{ user.username }}';
+console.log('my username is',my_username)
+const my_avatar='{{ user.get_avatar }}';
+const pv_socket=new WebSocket(
+        'ws://'
+            + window.location.host
+            + '/ws/private_consumer/'
 
+    );
 
-
-
+const alert_div=document.getElementById('alert_message');
 const observer=new IntersectionObserver((entries,observer)=>{
     for(const el of entries)
     {

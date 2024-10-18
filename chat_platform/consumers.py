@@ -102,10 +102,10 @@ class ChatConsumer(WebsocketConsumer):
 class user_private_consumer(WebsocketConsumer):
     def connect(self):
         online_users[self.scope['user'].username] = self.channel_name
-        print(self.scope['user'].username,online_users)
+
         self.accept()
     def disconnect(self, close_code):
-        print('online users are',online_users)
+
         del online_users[self.scope['user'].username]
         self.accept()
     def receive(self, text_data):
