@@ -17,6 +17,7 @@ class login_user(View):
         return render(request,'Login_page.html',context={'form':form})
     def post(self,request):
        form=my_form(request.POST)
+
        if form.is_valid():
            username_or_email=form.cleaned_data.get('username')
            users=cutsom_user.objects.filter(Q(email=username_or_email)|Q(username=username_or_email))

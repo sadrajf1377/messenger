@@ -53,9 +53,9 @@
     Avatar:
     <br>
     <label for="id_avatar">
-    <img style="border-radius: 50%;height: 70px;width: 80px" src="{{ user.avatar.url }}" alt="Avatar" id="avatar_img">
+    <img style="border-radius: 50%;height: 70px;width: 80px" src="{{ user.get_avatar }}" alt="Avatar" id="avatar_img">
      </label>
-    <input type="file" style="display: none" id="id_avatar">
+    <input type="file" style="display: none" id="id_avatar" onchange="on_avatar_change(this)">
     <br>
 <hr style="background-color: grey">
 </div>
@@ -72,6 +72,17 @@
 <button>
     Submit
 </button>
+
 </div>
+<script>
+    const avatar_img=document.getElementById('avatar_img')
+    function on_avatar_change(inp)
+    {
+        const file=inp.files[0];
+        const url=URL.createObjectURL(file);
+        avatar_img.src=url;
+
+    }
+</script>
 </body>
 </html>

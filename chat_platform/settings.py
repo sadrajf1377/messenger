@@ -37,8 +37,7 @@ LOGIN_URL=reverse_lazy('login')
 # Application definition
 AUTH_USER_MODEL='user_module.cutsom_user'
 INSTALLED_APPS = [
-    'daphne'
-    ,
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
