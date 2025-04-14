@@ -33,4 +33,14 @@ Frontend Layer: JS-based WebSocket clients handle dynamic DOM updates and group-
 
 Database Models: Track users, groups, messages, file attachments, and system notifications,sqlite3 is used for data storage.
 
+## License
+
+This project is licensed under the [Creative Commons Attribution-NonCommercial 4.0 International License](https://creativecommons.org/licenses/by-nc/4.0/).
+
+© 2025 Sadra Jafari. Commercial use is **strictly prohibited**.
+
+---
+
+
+*Note:
 you can pull it's image from here -> sadrajaf77/chat_platform:latest
